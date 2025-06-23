@@ -11,6 +11,7 @@ vcpkg_from_github(
     PATCHES
         cmake-quirks.diff
         fix-target_link.patch
+        allow-arm64ec.patch
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS

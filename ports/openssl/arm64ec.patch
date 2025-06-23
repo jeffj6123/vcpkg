@@ -1,0 +1,26 @@
+diff --git a/Configurations/10-main.conf b/Configurations/10-main.conf
+index 10fca8f..5faaa5f 100644
+--- a/Configurations/10-main.conf
++++ b/Configurations/10-main.conf
+@@ -1632,6 +1632,21 @@ my %targets = (
+         perlasm_scheme   => sub { vc_win64a_info()->{perlasm_scheme} },
+         multilib         => "-x64",
+     },
++    "VC-WIN64-ARM64EC" => {
++        inherit_from     => [ "VC-WIN64-common" ],
++        AS               => "armasm64",
++        ASFLAGS          => "-nologo",
++        asoutflag        => "-o",
++        asflags          => "-machine ARM64EC",
++        ARFLAGS		=> add("/MACHINE:ARM64EC"),
++        cflags		=> add("/arm64EC"),
++        lflags          => add("/MACHINE:ARM64EC"),
++        sys_id           => "WIN64_ARMEC",
++        uplink_arch      => 'aarch64',
++        asm_arch         => 'aarch64',
++        perlasm_scheme   => "auto",
++        multilib         => "-arm64ec",
++    },
+     "VC-WIN32" => {
+         inherit_from     => [ "VC-noCE-common" ],
+         AS               => sub { vc_win32_info()->{AS} },
