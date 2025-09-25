@@ -24,9 +24,15 @@ elseif(VCPKG_TARGET_ARCHITECTURE STREQUAL "arm64")
     else()
         set(OPENSSL_ARCH VC-WIN64-CLANGASM-ARM)
     endif()
+elseif(VCPKG_TARGET_ARCHITECTURE STREQUAL "arm64ec")
+    # ARM64EC support with 'no-asm' for compatibility
+    set(OPENSSL_ARCH VC-WIN64-ARM64EC)
+    vcpkg_list(APPEND CONFIGURE_OPTIONS no-asm)
 else()
     message(FATAL_ERROR "Unsupported target architecture: ${VCPKG_TARGET_ARCHITECTURE}")
 endif()
+
+message("open arch version. ${OPENSSL_ARCH}")
 
 if(VCPKG_TARGET_IS_UWP)
     vcpkg_list(APPEND CONFIGURE_OPTIONS
