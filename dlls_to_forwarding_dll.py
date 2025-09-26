@@ -16,6 +16,7 @@ import time
 # 5. Link the object files and import libraries to create the forwarding DLL.
 # 6. If LNK1397 errors occur, update .def files with DATA and retry linking.
 
+# currently the package locations point to local cxcache but can be changed to where they get produced via vcpkg
 output_base_folder = "output"
 dlls = [
     {
@@ -60,6 +61,28 @@ dlls = [
         "x64_name": None,
         "x64_package": r"C:\pkg_cache\DsmsCredentialsManagement.3.20.59\lib\Native",
     },
+    
+
+    #currently not produced due to a bug which does not allow DATA in def files for forwarding DLLs
+    # This should be fixed in october/november 2025 msvc updates
+    # {
+    #     "arm64_name": "libprotobuf",
+    #     "arm64_package": r"C:\pkg_cache\Microsoft.Internal.ServiceFabric.grpc-arm64.2.5.0\bin",
+    #     "x64_name": None,
+    #     "x64_package": r"C:\pkg_cache\Microsoft.Internal.ServiceFabric.grpc-x64.2.5.0\bin",
+    # },
+    # {
+    #     "arm64_name": "libprotobuf-lite",
+    #     "arm64_package": r"C:\pkg_cache\Microsoft.Internal.ServiceFabric.grpc-arm64.2.5.0\bin",
+    #     "x64_name": None,
+    #     "x64_package": r"C:\pkg_cache\Microsoft.Internal.ServiceFabric.grpc-x64.2.5.0\bin",
+    # },
+    #     {
+    #     "arm64_name": "libprotoc",
+    #     "arm64_package": r"C:\pkg_cache\Microsoft.Internal.ServiceFabric.grpc-arm64.2.5.0\bin",
+    #     "x64_name": None,
+    #     "x64_package": r"C:\pkg_cache\Microsoft.Internal.ServiceFabric.grpc-x64.2.5.0\bin",
+    # },
 ]
 
 def parse_exports(dumpbin_output):
